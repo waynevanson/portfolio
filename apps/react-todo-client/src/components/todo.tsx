@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import React from "react";
-import { Todos } from "./todos";
+import styled from "styled-components";
+import { Endomorphism } from "../utils";
 
 export const CheckboxCompleted = styled.input.attrs({ type: "checkbox" })``;
 
@@ -18,37 +18,27 @@ export interface Todo {
 
 export interface TodoProps {
   todo: Todo;
-  todoSet: React.Dispatch<Todo>;
+  todoSet: React.Dispatch<Endomorphism<Todo>>;
 }
 
-// todo - fade on completed
+export const updateContents =
+  (contents: string): Endomorphism<Todo> =>
+  (todo) => ({ ...todo, contents });
+
+export const updateCompleted =
+  (completed: boolean): Endomorphism<Todo> =>
+  (todo) => ({ ...todo, completed });
 
 export const Todo: React.FC<TodoProps> = ({ todo, todoSet }) => {
-  const onChange = React.useCallback(
-    (contents: string) => {
-      if (todo.contents === contents) return;
-      todoSet({ ...todo, contents });
-    },
-    [todo, todoSet]
-  );
-
-  const onCheck = React.useCallback(
-    (completed: boolean) => {
-      if (todo.completed === completed) return;
-      todoSet({ ...todo, completed });
-    },
-    [todo, todoSet]
-  );
-
   return (
     <Container>
       <CheckboxCompleted
         checked={todo.completed}
-        onChange={(e) => onCheck(e.target.checked)}
+        onChange={(e) => todoSet(updateCompleted(e.target.checked))}
       />
       <InputText
         value={todo.contents}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => todoSet(updateContents(e.target.value))}
       />
     </Container>
   );

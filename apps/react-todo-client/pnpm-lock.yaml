@@ -5,6 +5,7 @@ specifiers:
   '@types/react': ^17.0.38
   '@types/react-dom': ^17.0.11
   '@types/styled-components': ^5.1.20
+  fp-ts: ^2.11.7
   react: ^17.0.2
   react-dom: ^17.0.2
   snowpack: ^3.8.8
@@ -13,6 +14,7 @@ specifiers:
   typescript: ^4.5.4
 
 dependencies:
+  fp-ts: 2.11.7
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
@@ -1288,6 +1290,10 @@ packages:
       combined-stream: 1.0.8
       mime-types: 2.1.34
     dev: true
+
+  /fp-ts/2.11.7:
+    resolution: {integrity: sha512-UUpeygu50mV/J96Nk92fzHDznYXJxsO20wrUZGJppja1f8P+fhCaclcqcfubEyrH7XXPsmYn98CJF0BVAEn3ZQ==}
+    dev: false
 
   /fs-minipass/2.1.0:
     resolution: {integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==}
