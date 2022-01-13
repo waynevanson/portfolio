@@ -2,7 +2,7 @@ import { array as A } from "fp-ts";
 import React from "react";
 import styled from "styled-components";
 import { TodoInput, Todos } from "./components";
-import { Todo, zero } from "./state/todo";
+import { Todo, mkTodo } from "./state/todo";
 import { allCompleted, deleteTodo, updateTodo } from "./state/todos";
 
 const Container = styled.section`
@@ -17,12 +17,14 @@ const Container = styled.section`
 // last todo is special and should always be empty
 export const App = () => {
   const [todoContent, todoContentSet] = React.useState<Todo["contents"]>("");
-  const [todos, todosSet] = React.useState<Todos>([]);
+  const [todos, todosSet] = React.useState<Todos>([
+    mkTodo({ contents: "Test the react todo client app for bugs" }),
+  ]);
 
   const onAdd = React.useCallback(() => {
     if (todoContent !== "" && todos[todos.length - 1]?.contents !== "") {
       // append to todos
-      todosSet(A.append({ ...zero(), contents: todoContent }));
+      todosSet(A.append({ ...mkTodo(), contents: todoContent }));
       // clear text
       todoContentSet("");
     }

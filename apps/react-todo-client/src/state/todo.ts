@@ -8,11 +8,15 @@ export interface Todo {
   selected: boolean;
 }
 
-export const zero = (): Todo => ({
+export const mkTodo = ({
+  completed = false,
+  contents = "",
+  selected = false,
+}: Partial<Omit<Todo, "id">> = {}): Todo => ({
   id: random(Number.MIN_SAFE_INTEGER, Number.MAX_SAFE_INTEGER).toString(),
-  completed: false,
-  contents: "",
-  selected: false,
+  completed,
+  contents,
+  selected,
 });
 
 export const updateContents =
