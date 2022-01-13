@@ -21,8 +21,8 @@ export interface TodoProps
 
 const Container = styled.li`
   display: flex;
-  gap: 0.5rem;
-  padding: 0.4rem;
+  gap: 1rem;
+  padding: 0.35rem;
   background-color: lightgray;
   border-radius: 0.5rem;
 `;
@@ -38,7 +38,7 @@ const InputContent = styled(InputText)`
 
 const GroupButtons = styled.div`
   display: inline-flex;
-  gap: 0.5rem;
+  gap: 1rem;
   margin: 0 0.25rem;
 `;
 
