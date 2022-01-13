@@ -34,7 +34,6 @@ export const App = () => {
     <Container>
       <h1>React Todo Client</h1>
       <p>
-        &nbsp;
         {todos.length === 0
           ? "Looks like you don't know what to do, add an item to begin!"
           : todos.length > 0 && allCompleted(todos)
