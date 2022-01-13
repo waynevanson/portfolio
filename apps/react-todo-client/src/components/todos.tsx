@@ -1,41 +1,28 @@
-import { array as A, option as O } from "fp-ts";
-import { pipe } from "fp-ts/lib/function";
 import React from "react";
 import styled from "styled-components";
-import { Endomorphism } from "../utils";
-import { Todo } from "./todo";
+import { TodoProps } from ".";
+import { Todos as Todos_ } from "../state/todos";
+import { TodoItem } from "./todo-item";
 
-export type Todos = Array<Todo>;
+export type Todos = Todos_;
 
-const Container = styled.section`
-  padding: 1rem;
+const Container = styled.ul`
+  display: flex;
+  flex-direction: column;
+  // why does it lose width?
+  padding: 0 0;
   gap: 0.5rem;
 `;
 
-export interface TodosProps {
+export interface TodosProps extends Omit<TodoProps, "todo"> {
   todos: Todos;
-  todosSet: React.Dispatch<Endomorphism<Todos>>;
 }
 
-export const updateTodo =
-  (id: Todo["id"], todoSet: Endomorphism<Todo>): Endomorphism<Todos> =>
-  (todos) =>
-    pipe(
-      todos,
-      A.findIndex((todo) => todo.id === id),
-      O.chain((index) => A.modifyAt(index, todoSet)(todos)),
-      O.getOrElse(() => todos)
-    );
-
-export const Todos: React.FC<TodosProps> = ({ todos, todosSet }) => {
+export const Todos: React.FC<TodosProps> = ({ todos, ...rest }) => {
   return (
     <Container>
       {todos.map((todo) => (
-        <Todo
-          key={todo.id}
-          todo={todo}
-          todoSet={(todoSet) => todosSet(updateTodo(todo.id, todoSet))}
-        />
+        <TodoItem key={todo.id} todo={todo} {...rest} />
       ))}
     </Container>
   );
