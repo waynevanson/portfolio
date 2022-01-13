@@ -5,10 +5,9 @@
     "module": "es6",
     "esModuleInterop": true,
     "strict": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "incremental": true
+    "incremental": true,
+    "skipLibCheck": true
   }
 }
