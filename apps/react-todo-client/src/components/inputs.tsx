@@ -14,7 +14,7 @@ const InnerCheckbox = styled.input.attrs({ type: "checkbox" })``;
 export const Checkbox = React.forwardRef<
   HTMLInputElement,
   Omit<JSX.IntrinsicElements["input"], "type" | "ref">
->(({ style, children, ...rest }, ref) => {
+>(({ style, children, className, ...rest }, ref) => {
   return (
     <label
       tabIndex={0}
@@ -22,10 +22,12 @@ export const Checkbox = React.forwardRef<
       aria-checked={rest.checked}
       htmlFor={rest.name}
       style={{ display: "inline-block", marginBlock: "10px 10px", ...style }}
+      className={className}
     >
       {children}
       <InnerCheckbox
         ref={ref}
+        className={className}
         {...rest}
         style={{
           display: React.Children.count(children) === 0 ? "unset" : "none",
@@ -35,11 +37,16 @@ export const Checkbox = React.forwardRef<
     </label>
   );
 });
+
 export const Button = styled.button`
   border: 0;
   border-radius: 0.5rem;
   padding: 0.5rem;
   font-size: 1rem;
+  &:hover,
+  &:focus {
+    filter: brightness(1.5);
+  }
 `;
 
 export const ButtonIcon = styled(Button)`

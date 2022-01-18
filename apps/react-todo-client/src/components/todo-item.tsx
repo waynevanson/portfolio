@@ -1,16 +1,11 @@
-import {
-  faCheckSquare,
-  faCircle,
-  faDotCircle,
-  faSquare,
-} from "@fortawesome/free-regular-svg-icons";
+import { faCheckSquare, faSquare } from "@fortawesome/free-regular-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { constVoid } from "fp-ts/lib/function";
 import React from "react";
 import styled from "styled-components";
 import { Todo } from "../state/todo";
-import { Button, ButtonIcon, Checkbox, InputText } from "./inputs";
+import { ButtonIcon, Checkbox, InputText } from "./inputs";
 
 export const CheckboxCompleted = styled(Checkbox)``;
 
@@ -39,7 +34,7 @@ const InputContent = styled(InputText)`
 const GroupButtons = styled.div`
   display: inline-flex;
   gap: 1rem;
-  margin: 0 0.25rem;
+  margin-left: 0.75rem;
 `;
 
 export const TodoItem: React.FC<TodoProps> = ({

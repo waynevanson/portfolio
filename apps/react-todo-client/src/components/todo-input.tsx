@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { constVoid } from "fp-ts/lib/function";
 import React from "react";
 import styled from "styled-components";
-import { Button, ButtonIcon, InputText } from ".";
+import { ButtonIcon, InputText } from ".";
 
 export const TodoInputText = styled(InputText)`
   font-size: 1.3rem;
@@ -13,7 +13,11 @@ export const TodoInputText = styled(InputText)`
 
 const Container = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 1rem;
+`;
+
+const ButtonAdd = styled(ButtonIcon)`
+  margin-left: 1rem;
 `;
 
 export const TodoInput = React.forwardRef<
@@ -24,12 +28,9 @@ export const TodoInput = React.forwardRef<
 >(({ onAdd = constVoid, ...props }, ref) => {
   return (
     <Container>
-      <ButtonIcon
-        style={{ marginLeft: "0.75rem" }}
-        onClick={() => onAdd(props.value as string)}
-      >
+      <ButtonAdd onClick={() => onAdd(props.value as string)}>
         <FontAwesomeIcon size="2x" icon={faPlus} color="green" />
-      </ButtonIcon>
+      </ButtonAdd>
       <TodoInputText ref={ref} {...props} />
     </Container>
   );
